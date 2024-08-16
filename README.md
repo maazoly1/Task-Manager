@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is a full-stack application built with modern web technologies. The front end is powered by Next.js, while the back end is also built on Next.js, Prisma, and SQLite. The application leverages Zod for validation, JWT for authentication, and Prisma for ORM.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technologies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Front End
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 14:** The React framework for production with hybrid static & server rendering, and TypeScript support.
+- **TypeScript:** A strongly typed programming language that builds on JavaScript.
+- **Material UI:** Used for responsive and modern UI components.
+- **React Hook Form:** Simplifies form handling and validation in React.
+- **Server Actions:** Enhances Next.js by allowing direct interaction with server-side logic.
+- **Revalidate Tag (Next.js Cache):** Enables cache invalidation for better performance and up-to-date data.
+- **TanStack Query (React Query):** Manages server-state and API requests efficiently.
+- **Zod Validation:** Schema-based validation for form data.
+- **JWT Token-Based Authentication:** Ensures secure user authentication and authorization.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Backend
 
-## Learn More
+- **Next.js 14:** Also used on the backend to handle server-side logic and API routes.
+- **Prisma:** A next-generation ORM that helps manage database interactions.
+- **SQLite3:** A lightweight SQL database engine used for development.
+- **TypeScript:** Ensures type safety throughout the backend codebase.
+- **Zod Validation:** Ensures the correctness of data structures and API requests.
+- **JWT Token-Based Authentication:** Implements JSON Web Token (JWT) for secure authentication.
 
-To learn more about Next.js, take a look at the following resources:
+## Instructions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Environment Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Create Environment Variables:**
+   - Create a `.env.local` file in the root directory, next to the `package.json` file.
+   - Add the following environment variables to the `.env.local` file:
 
-## Deploy on Vercel
+     ```bash
+     DATABASE_URL="file:./dev.db"
+     SALT_ROUND=10
+     SECRET_KEY="uQy+MLBV0iwVASPOXP91hk/UWhvVGgLyFpm8txHtdvw="
+     EXP_1D="1d"
+     NEXT_PUBLIC_BACKEND_API_URL="http://localhost:3000/api/v1"
+     ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. **Install Dependencies:**
+   - Run the following command in the terminal to install all required dependencies:
+
+     ```bash
+     npm install
+     ```
+
+### Running the Application
+
+3. **Start the Development Server:**
+   - Use the following command to start the development server:
+
+     ```bash
+     npm run dev
+     ```
+
+## Additional Information
+
+- **API URL:** Ensure that the backend server is running on `http://localhost:3000` for the front end to communicate effectively with the API.
+- **SQLite3 Database:** The application uses SQLite3 as the database engine, making it lightweight and easy to set up. Prisma is configured to interact with this database.
+
+## Notes
+
+- Ensure all necessary ports are open and that no other service is running on the port used by this application.
+- This application is structured to be modular and easily extensible, making it a great starting point for larger projects.
+
+---
+
+Feel free to contribute and extend this project further!
