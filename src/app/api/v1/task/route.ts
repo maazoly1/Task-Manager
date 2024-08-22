@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
   try {
     const req = await request.json();
     // Verify JWT token and retrieve the Bearer token
-    const token = verifyToken(req);
+    const token = verifyToken(request);
     if (!token) {
       return NextResponse.json(
         { error: "Unauthorized", message: "Unauthorized Access" },
@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
     const taskData = await prisma.task.create({
       data: data as unknown as TTask,
     });
+    console.log(taskData);
 
     if (!taskData) {
       return NextResponse.json(
@@ -47,6 +48,7 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error: any) {
+    console.log(error);
     return NextResponse.json(
       { error: error.error, message: error.message },
       { status: 401 }
