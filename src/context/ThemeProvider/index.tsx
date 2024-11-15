@@ -2,20 +2,33 @@
 
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useMemo } from "react";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import theme from "./theme";
+import { prefixer } from 'stylis';
+import rtlPlugin from "stylis-plugin-rtl";
 
 const options = {
   key: "task-management",
 };
 
-function ThemeProvider({ children }: PropsWithChildren) {
+// Create rtl cache
+const optionRtl = {
+  key: 'task-management-rtl',
+  stylisPlugins: [prefixer, rtlPlugin],
+};
+
+interface ThemeProviderProps extends PropsWithChildren {
+  isRtl?: boolean
+}
+
+function ThemeProvider({ isRtl = false, children }: ThemeProviderProps) {
+  const themeValue = useMemo(() => theme(isRtl), [isRtl]);
   return (
-    <AppRouterCacheProvider options={options}>
-      <MuiThemeProvider theme={theme}>
+    <AppRouterCacheProvider options={isRtl ? optionRtl : options}>
+      <MuiThemeProvider theme={themeValue}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <CssBaseline />
           {children}

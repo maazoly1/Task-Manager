@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { PROTECTED_ROUTES } from "./types/constant";
-import { actionSignout } from "./actions/authAction";
+import middlewareIntl from "./middleware/middlewareIntl";
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -15,6 +15,17 @@ export async function middleware(request: NextRequest) {
   if (!!session && !protectedRoutes) {
     return NextResponse.redirect(new URL("/", request.url));
   }
+
+  const i18n = await middlewareIntl(request);
+
+  if (i18n) {
+    i18n.headers.set(
+      "x-pathname",
+      request.nextUrl.pathname.replace(/^\/[a-z]{2}/, "")
+    );
+    return i18n;
+  }
+
   // Allow the request to proceed if no redirects are needed
   return NextResponse.next();
 }

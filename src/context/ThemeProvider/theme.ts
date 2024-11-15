@@ -6,8 +6,11 @@ export const poppins = Poppins({
   subsets: ["latin"],
 });
 
-const theme = responsiveFontSizes(
+const theme = (isRtl = false) => {
+  console.log(isRtl ? 'rtl' : 'ltr');
+  return responsiveFontSizes(
   createTheme({
+    direction: isRtl ? 'rtl' : 'ltr',
     components: {
       MuiCssBaseline: {
         styleOverrides: `
@@ -90,5 +93,5 @@ const theme = responsiveFontSizes(
     },
   })
 );
-
+}
 export default theme;

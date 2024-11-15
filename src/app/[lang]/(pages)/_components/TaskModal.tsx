@@ -20,6 +20,7 @@ import { useMutation } from "@tanstack/react-query";
 import useAppContext from "@/context/AppProvider/useAppContext";
 import { AppActionType } from "@/types/appContext";
 import { actionAddTask } from "@/actions/taskAction";
+import FormattedMessage from "@/components/FormattedMessage";
 
 interface TaskModalProps {
   action: string;
@@ -90,7 +91,7 @@ function TaskModal({ action, userId }: TaskModalProps) {
           startIcon={<AddCircleOutlineOutlinedIcon />}
           onClick={() => setOpen(true)}
         >
-          Add Task
+          <FormattedMessage id="Add Task" defaultMessage="Add Task" />
         </Button>
       )}
 

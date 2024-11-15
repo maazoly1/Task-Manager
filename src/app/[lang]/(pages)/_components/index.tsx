@@ -2,6 +2,7 @@ import { Box, Button, Container, Grid, Paper, Typography } from "@mui/material";
 import TaskList from "./TaskList";
 import TaskModal from "./TaskModal";
 import { actionGetAuthUser } from "@/actions/authAction";
+import TaskHeading from "./TaskHeading";
 
 async function Home() {
   const userData = await actionGetAuthUser();
@@ -12,28 +13,7 @@ async function Home() {
         <Paper variant="outlined" sx={{ p: 4 }}>
           <Grid container>
             <Grid item xs sx={{ pb: 5 }}>
-              <Typography
-                variant="h4"
-                component={"span"}
-                sx={{
-                  textAlign: { xs: "start", sm: "center" },
-
-                  fontWeight: "bold",
-                }}
-              >
-                Task
-              </Typography>
-              <Typography
-                variant="h4"
-                component={"span"}
-                sx={{
-                  textAlign: { xs: "start", sm: "center" },
-                  fontWeight: "bold",
-                  color: "primary.main",
-                }}
-              >
-                List
-              </Typography>
+              <TaskHeading />
             </Grid>
             {userId && (
               <Grid xs="auto">
